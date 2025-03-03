@@ -1,0 +1,11 @@
+pillow
+opencv-python
+numpy
+matplotlib
+tensorflow
+torch
+torchvision
+torchmetrics
+kaggle
+pandas
+jupyter

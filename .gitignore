@@ -1,0 +1,4 @@
+venv/
+temp.jpg
+private_samples/*
+!private_samples/
