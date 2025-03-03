@@ -9,20 +9,24 @@ from torchvision import transforms
 
 def image_to_ela(image_path: str, quality: int = 90, scale: int = 15):
     if image_path.endswith('png') or image_path.endswith('jpg') or image_path.endswith('jpeg'):
-        original = Image.open(image_path).convert('RGB')
+        try: 
+            original = Image.open(image_path).convert('RGB')
         
-        temp_path = "temp.jpg"
-        original.save(temp_path, 'JPEG', quality = quality)
+            temp_path = "temp.jpg"
+            original.save(temp_path, 'JPEG', quality = quality)
         
-        recompressed = Image.open(temp_path).convert('RGB')
-        diff = ImageChops.difference(original, recompressed)
+            recompressed = Image.open(temp_path).convert('RGB')
+            diff = ImageChops.difference(original, recompressed)
         
-        
-        extrema = diff.getextrema()
-        max_diff = max([ ex[1] for ex in extrema]) or 1
-        scale_factor = 255.0 / max_diff if max_diff > 0 else scale
+            extrema = diff.getextrema()
+            max_diff = max([ ex[1] for ex in extrema]) or 1
+            scale_factor = 255.0 / max_diff if max_diff > 0 else scale
 
-        return ImageEnhance.Brightness(diff).enhance(scale_factor)
+            return ImageEnhance.Brightness(diff).enhance(scale_factor)
+        except Exception as ex:
+            print(f"Failed to convert {image_path} to ELA: {str(ex)}")
+    else:
+        print(f"Only PNG, JPG or JPEG image format is supported.")
 
 
 class Model(nn.Module):
