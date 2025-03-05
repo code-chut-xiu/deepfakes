@@ -10,3 +10,7 @@ kaggle
 pandas
 jupyter
 ipykernel
+accelerate
+transformers
+datasets
+scikit-learn
