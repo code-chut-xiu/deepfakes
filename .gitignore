@@ -2,4 +2,5 @@ venv/
 temp.jpg
 private_samples/*
 !private_samples/
-sample_images/
+test_images/
+train_images/
