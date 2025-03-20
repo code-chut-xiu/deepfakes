@@ -4,3 +4,5 @@ private_samples/*
 !private_samples/
 test_images/
 train_images/
+dataset/
+*.pth
